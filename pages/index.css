@@ -1,0 +1,396 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+:root {
+
+    /* Another Styllling */
+    --text-color: #414141;
+    --white-color: #ffffff;
+    --hover-text-color: #6b7284;
+
+    /* Fix The Colours */
+    --body-color: #F9F9FE;
+    --epcl-main-color: #FF4C60;
+    --epcl-secondary-color: #65EBE7;
+    --epcl-titles-color: #454360;
+    --epcl-black-color: #4B4870;
+    --epcl-text-color: #596172;
+    --epcl-border-color: #EEEEEE;
+    --epcl-input-bg-color: #F9F9FE;
+    --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    --header-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+    /* Card Root Colors */
+    /* Change favorite color - Blue 210 - Purple 250 - Green 142 - Pink 340*/
+    --hue-color: 210;
+
+    /* HSL color mode */
+    --first-color: hsl(var(--hue-color), 96%, 54%);
+    --first-color-light: hsl(var(--hue-color), 96%, 69%);
+    --first-color-alt: hsl(var(--hue-color), 96%, 37%);
+    --first-color-lighter: hsl(var(--hue-color), 14%, 96%);
+    --title-color: hsl(var(--hue-color), 12%, 15%);
+    --text-color: hsl(var(--hue-color), 12%, 35%);
+    --text-color-light: hsl(var(--hue-color), 12%, 65%);
+    --white-color: #FFF;
+    --body-color: hsl(var(--hue-color), 100%, 99%);
+    --container-color: #FFF;
+
+    /*========== Font and typography ==========*/
+    --body-font: 'Lato', sans-serif;
+    --pricing-font: 'Rubik', sans-serif;
+    --biggest-font-size: 1.75rem;
+    --normal-font-size: .938rem;
+    --h2-font-size: 1.25rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+    --tiny-font-size: .625rem;
+
+    /*========== Margenes Bottom ==========*/
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-1: 1rem;
+    --mb-1-25: 1.25rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+
+}
+
+.wrapper {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 5%;
+}
+
+.wrapper>p,
+.wrapper>h1 {
+    margin: 1.5rem 0;
+    text-align: start;
+}
+
+.wrapper>h1 {
+    letter-spacing: 0;
+    font-size: 1.5rem;
+}
+
+.accordion {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 2rem 2.5rem;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.accordion i {
+    font-size: 1.6rem;
+}
+
+.active,
+.accordion:hover {
+    background-color: #f1f7f5;
+}
+
+.pannel {
+    padding: 0 2rem 2.5rem 2rem;
+    background-color: white;
+    overflow: hidden;
+    background-color: #f1f7f5;
+    display: none;
+}
+
+.pannel p {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.faq {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+}
+
+.faq.active {
+    border: none;
+}
+
+
+
+/* Shopping Page Styl Here */
+.shop {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: start;
+}
+
+.shop .head_tit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.shop .head_tit h3 {
+    font-size: 50px;
+    color: black;
+    font-family: "Oswald", serif;
+    text-transform: uppercase;
+    font-weight: 1000;
+}
+
+#cl {
+    margin-top: 3%;
+}
+
+.shop .head_tit p {
+    color: black;
+    font-size: 16px;
+    font-family: "Oswald", serif;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.shop .shop_grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.shop .shop_grid_sports {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 2rem;
+}
+
+.shop .shop_grid_sports .shop_grid_box_sports {
+    width: 400px;
+    height: auto;
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    /* border: 1px solid var(--epcl-black-color); */
+}
+
+.shop .shop_grid_sports .shop_grid_box_sports img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.shop .shop_grid_sports .shop_grid_box_sports p {
+    font-size: 25px;
+    margin: 10px;
+    font-weight: 1000;
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    font-family: "Oswald", serif;
+    color: var(--white-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.shop .shop_grid .shop_grid_box {
+    width: 400px;
+    height: auto;
+    position: relative;
+    padding: 20px;
+}
+
+.shop .shop_grid .shop_grid_box img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.shop .shop_grid .shop_grid_box p {
+    font-size: 20px;
+    margin: 10px;
+    font-family: "Oswald", serif;
+    color: black;
+    font-weight: 600;
+}
+
+
+/* Start Form Styyling Here */
+
+.start_form {
+    width: 80%;
+    left: 10%;
+    background: var(--white-color);
+    box-shadow: var(--box-shadow);
+    height: auto;
+    position: absolute;
+    top: 60%;
+    overflow: hidden;
+}
+
+
+.start_form .start_nav {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0;
+}
+
+.start_form .start_nav .train_li {
+    border-right: 2px solid var(--epcl-border-color);
+}
+
+.start_form .start_nav .train_li,
+.start_form .start_nav .bus_li {
+    padding: 15px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.start_form .start_nav .train_li h3,
+.start_form .start_nav .bus_li h3 {
+    font-size: 18px;
+    color: black;
+    position: relative;
+}
+
+
+.start_form .start_nav .train_li.active_bar h3::after,
+.start_form .start_nav .bus_li.active_bar h3::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 400%;
+    height: 3px;
+    margin-left: -150%;
+    background: var(--epcl-black-color);
+    transition: all ease 0.2s;
+}
+
+.start_form .train_app {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* position: relative; */
+    overflow: hidden;
+}
+
+.start_form .train_app form {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 2rem;
+    margin-bottom: 2%;
+}
+
+#bus_app {
+    display: none;
+}
+
+.start_form .train_app form .form_app {
+    padding: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.start_form .train_app form .form_app .labelline {
+    position: absolute;
+    font-size: 14px;
+    color: var(--hover-text-color);
+    padding: 4px 10px;
+    font-weight: 400;
+    background: var(--white-color);
+    top: 35%;
+    left: 8%;
+    transition: all ease 0.2s;
+}
+
+.start_form .train_app form .form_app select {
+    padding: 20px 5px;
+    border: 1px solid var(--epcl-black-color);
+    outline: none;
+    color: var(--hover-text-color);
+    cursor: pointer;
+    border-radius: 3px;
+    width: 200px;
+}
+
+#apply_btn {
+    cursor: pointer;
+    background: black;
+    color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 20px 30px;
+    border: none;
+    outline: none;
+}
+
+.start_form .train_app form .form_app i {
+    font-size: 20px;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: "Oswald", serif;
+}
+
+.start_form .train_app form #trans {
+    padding: 0px;
+}
+
+.start_form .train_app form .form_app select option {
+    height: 20px;
+    background: var(--text-color);
+    color: var(--body-color);
+}
+
+.start_form .train_app form .form_app input {
+    padding: 20px 30px;
+    outline: none;
+    border-radius: 3px;
+    width: 100%;
+    cursor: pointer;
+    color: var(--text-color);
+    border: 1px solid var(--epcl-black-color);
+}
+
+.start_form .train_app form .form_app input:valid,
+.start_form .train_app form .form_app input:focus,
+.start_form .train_app form .form_app select:valid,
+.start_form .train_app form .form_app select:focus {
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+}
+
+.start_form .train_app form .form_app input:valid+.labelline,
+.start_form .train_app form .form_app input:focus+.labelline {
+    color: var(--text-color);
+    transform: translate(8px, -25px);
+    font-size: 12px;
+}

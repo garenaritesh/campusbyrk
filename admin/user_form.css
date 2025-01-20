@@ -1,0 +1,162 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    scroll-behavior: smooth;
+}
+
+:root {
+
+    /* Another Styllling */
+    --text-color: #414141;
+    --white-color: #ffffff;
+    --hover-text-color: #6b7284;
+
+    /* Fix The Colours */
+    --body-color: #F9F9FE;
+    --epcl-main-color: #FF4C60;
+    --epcl-secondary-color: #65EBE7;
+    --epcl-titles-color: #454360;
+    --epcl-black-color: #4B4870;
+    --epcl-text-color: #596172;
+    --epcl-border-color: #EEEEEE;
+    --epcl-input-bg-color: #F9F9FE;
+    --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    --header-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: var(--body-color);
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    flex-direction: column;
+}
+
+/* Curoser Pointer */
+a,
+ul li,
+li,
+.logo,
+h3,
+h2 .title,
+title,
+button,
+input {
+    cursor: pointer;
+}
+
+li,
+a {
+    list-style: none;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* COntet HEre */
+.form_view {
+    width: 80%;
+    height: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: var(--white-color);
+    box-shadow: var(--box-shadow);
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+
+.form_view .top {
+    width: 100%;
+    position: relative;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form_view .top .profile_pic {
+    width: 200px;
+}
+
+.form_view .top .profile_pic img {
+    width: 100%;
+}
+
+.form_view .top .user_dtl h3 {
+    color: var(--epcl-text-color);
+    margin-bottom: 5px;
+}
+
+.form_view .top .user_dtl h2 {
+    color: var(--epcl-black-color);
+    margin-bottom: 3px;
+}
+
+.form_view .bottom {
+    width: 100%;
+    position: relative;
+    padding: 1.5rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-top: 2px solid var(--text-color);
+}
+.form_view .bottom h3 {
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form_view .bottom .docs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.form_view .bottom .docs .docs_frame {
+    width: 300px;
+    /* border: 1px solid var(--epcl-black-color); */
+    box-shadow: var(--box-shadow);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    position: relative;
+    align-items: start;
+}
+
+.form_view .bottom .docs .docs_frame .doc_title {
+    width: 100%;
+    text-align: center;
+}
+
+.form_view .bottom .docs .docs_frame img {
+    width: 100%;
+    object-fit: cover;
+}

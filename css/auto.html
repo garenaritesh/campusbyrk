@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Paragraph Transition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+
+        .paragraph-container {
+            width: 60%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .paragraph {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+        }
+
+        .paragraph.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="paragraph-container">
+        <div class="paragraph active">Welcome to our website!</div>
+        <div class="paragraph">Explore the features we offer to make your life easier.</div>
+        <div class="paragraph">Get your Bonafide Certificates quickly and easily!</div>
+        <div class="paragraph">Start your journey with us today!</div>
+    </div>
+
+    <script>
+        const paragraphs = document.querySelectorAll('.paragraph');
+        let currentIndex = 0;
+
+        function showNextParagraph() {
+            paragraphs[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % paragraphs.length;
+            paragraphs[currentIndex].classList.add('active');
+        }
+
+        // Change paragraph every 3 seconds
+        setInterval(showNextParagraph, 3000);
+    </script>
+</body>
+
+</html>

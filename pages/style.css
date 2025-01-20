@@ -1,0 +1,778 @@
+/* About Page Stylling Here */
+/* Greate Stylling Here */
+
+/* Color Patterns */
+:root {
+
+    --p-color: #6b7381;
+
+    /* Another Styllling */
+    --text-color: #414141;
+    --white-color: #ffffff;
+    --hover-text-color: #6b7284;
+
+    /* Fix The Colours */
+    --body-color: #F9F9FE;
+    --epcl-main-color: #FF4C60;
+    --epcl-secondary-color: #65EBE7;
+    --epcl-titles-color: #454360;
+    --epcl-black-color: #4B4870;
+    --epcl-text-color: #596172;
+    --epcl-border-color: #EEEEEE;
+    --epcl-input-bg-color: #F9F9FE;
+    --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    --header-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+body {
+    background: white;
+}
+
+.about {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.about .about_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 25px;
+    color: var(--p-color);
+    gap: 0.6rem;
+    text-transform: uppercase;
+}
+
+.about .about_title span {
+    color: var(--text-color);
+}
+
+.about .about_title span i {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.about .about_title line {
+    padding: 1.2px;
+    width: 60px;
+    background: var(--text-color);
+}
+
+.about .about_content {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 0.2rem;
+}
+
+.about .about_content .left {
+    width: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about .about_content .left .banner {
+    width: 70%;
+    overflow: hidden;
+}
+
+.about .about_content .left .banner img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.about .about_content .right {
+    width: 50%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding: 100px 0px;
+}
+
+.about .about_content .right {
+    font-family: 20px;
+    line-height: 1.5rem;
+    letter-spacing: 0.05rem;
+    color: var(--p-color);
+}
+
+.about .about_content .right .auto_slogo {
+    margin-top: 3%;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.about .about_content .right .auto_slogo .paragraph-container {
+    width: 100%;
+    padding: 10px;
+    height: 10vh;
+    margin-top: 2%;
+    /* background: #fff; */
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: -5%;
+}
+
+.about .about_content .right .auto_slogo .paragraph {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+    position: absolute;
+    width: 100%;
+    text-align: start;
+    font-size: 18px;
+    color: var(--p-color);
+}
+
+.about .about_content .right .auto_slogo .paragraph.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.about_why {
+    width: 100%;
+    height: auto;
+    padding: 40px 120px;
+}
+
+.about_why h4 {
+    font-size: 20px;
+    color: var(--p-color);
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    text-transform: uppercase;
+}
+
+.about_why h4 line {
+    padding: 1px;
+    background: var(--text-color);
+    width: 60px;
+}
+
+.about_why h4 span {
+    color: var(--text-color);
+}
+
+.about_why .why_content {
+    width: 100%;
+    display: flex;
+    margin-top: 2%;
+
+}
+
+.about_why .why_content .features_box {
+    padding: 80px;
+    border: 2px solid var(--epcl-border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.about_why .why_content .features_box .box_title {
+    font-size: 16px;
+    color: var(--text-color);
+}
+
+.about_why .why_content .features_box p {
+    color: var(--p-color);
+    font-size: 14px;
+}
+
+
+
+/* Contact Page Stylling Here */
+
+.contact {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact .contact_title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 25px;
+    color: var(--p-color);
+    gap: 0.6rem;
+    text-transform: uppercase;
+}
+
+.contact .contact_title span {
+    color: var(--text-color);
+}
+
+.contact .contact_title line {
+    padding: 1.2px;
+    width: 60px;
+    background: var(--text-color);
+}
+
+.contact .contact_content {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 0.2rem;
+    padding: 0px 150px;
+}
+
+.contact .contact_content .left {
+    width: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact .contact_content .left .banner {
+    width: 80%;
+    overflow: hidden;
+}
+
+.contact .contact_content .left .banner img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.contact .contact_content .right {
+    width: 50%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding: 60px 0px;
+}
+
+.contact .contact_content .right {
+    font-family: 20px;
+    line-height: 1.5rem;
+    letter-spacing: 0.05rem;
+    color: var(--p-color);
+}
+
+.contact .contact_content .right .auto_slogo {
+    margin-top: 0%;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+}
+
+.contact .contact_content .right .auto_slogo form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 1rem;
+}
+
+.contact .contact_content .right .auto_slogo form textarea {
+    padding: 10px;
+    width: 60%;
+    border: 1px solid var(--epcl-border-color);
+    outline: none;
+    color: var(--epcl-text-color);
+}
+
+.contact .contact_content .right .auto_slogo:nth-child(2) {
+    margin-top: 3%;
+}
+
+.contact .contact_content .right .auto_slogo p {
+    color: var(--p-color);
+    font-size: 14px;
+    letter-spacing: 0;
+}
+
+.contact .contact_content .right .auto_slogo button {
+    width: 200px;
+    padding: 15px 60px;
+    background: black;
+    color: var(--body-color);
+    border: 1px solid var(--text-color);
+    cursor: pointer;
+}
+
+/* User Account Page Stylling Here */
+.slider {
+    position: relative;
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 1rem;
+    position: relative;
+}
+
+.slider h3 {
+    color: var(--epcl-titles-color);
+    font-size: 20px;
+    font-weight: 600;
+    text-align: start;
+    margin-top: 0%;
+}
+
+.slider .container {
+    height: auto;
+    width: 100%;
+    /* height: auto; */
+    margin-left: -0%;
+    /* border: 1px solid var(--text-color); */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    background: var(--white-color);
+    box-shadow: none;
+    padding: 30px 0px;
+}
+
+#remark_msg {
+    color: red;
+}
+
+.slider .container h3 {
+    color: var(--text-color);
+    text-align: center;
+    font-size: 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.slider .container .row {
+    width: 400px;
+    height: auto;
+    padding: 10px;
+    border-radius: 2px;
+    background: var(--white-color);
+    position: relative;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+}
+
+.slider .container .history_alert {
+    text-align: center;
+    font-size: 14px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--text-color);
+}
+
+.slider .container .row .notifi {
+    position: absolute;
+    top: 10%;
+    left: 80%;
+    font-size: 12px;
+    font-weight: 200;
+    color: rgb(245, 182, 8);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--epcl-text-color);
+}
+
+.slider .container .row .notifi .dot {
+    border-radius: 50%;
+    padding: 3px;
+    background: rgb(245, 182, 8);
+}
+
+.slider .container .row .notifi .alert_name {
+    color: rgb(245, 182, 8);
+}
+
+.slider .container .row .info {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.slider .container .row .info p {
+    color: var(--hover-text-color);
+}
+
+/* Notification Section Style */
+
+.slider {
+    position: relative;
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 2rem;
+    margin-top: 2%;
+}
+
+.slider h1 {
+    font-size: 22px;
+    color: var(--epcl-text-color);
+    font-weight: 600;
+}
+
+.slider .row {
+    width: 60%;
+    padding: 30px;
+    height: auto;
+    background: var(--white-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: start;
+    /* justify-items: start; */
+    flex-direction: column;
+    gap: 5rem;
+    position: relative;
+}
+
+.slider .row .top {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.slider .row .top .dot {
+    /* width: 10px; */
+    background-color: var(--text-color);
+    padding: 2px;
+    border-radius: 50%;
+}
+
+.slider .row .top p {
+    color: var(--hover-text-color);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.slider .row .top img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: var(--box-shadow);
+}
+
+.slider .row .msgs {
+    margin-bottom: 2rem;
+    padding: 5px 15px;
+}
+
+.slider .row .msgs p {
+    color: var(--epcl-text-color);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.slider .row .bottom button {
+    background: black;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    outline: none;
+}
+
+.slider .row .notifi_title {
+    text-align: start;
+}
+
+/* User Tabs */
+
+/* User Details*/
+.user_info {
+    width: 100%;
+    padding: 3rem 5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: start;
+}
+
+.user_info .user_img {
+    padding: 10px;
+}
+
+.user_info .user_img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user_info .user_dtl {
+    padding: 1rem 1.5rem;
+}
+
+.user_info .user_dtl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.user_info .user_dtl h1 {
+    color: var(--epcl-titles-color);
+}
+
+.user_info .user_dtl p {
+    color: var(--hover-text-color);
+    font-weight: 400;
+}
+
+.user_tabs {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: start;
+    padding: 20px;
+    margin-left: 5%;
+    border-bottom: 1px solid var(--text-color);
+}
+
+.user_tabs .tab {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 2.5rem;
+}
+
+.user_tabs .tab li {
+    padding: 3px 20px;
+}
+
+.user_tabs .tab li a {
+    color: var(--p-color);
+    position: relative;
+    transition: all ease 0.2s;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.user_tabs .tab li a:hover {
+    color: var(--text-color);
+}
+
+.user_tabs .tab .c_tab a:hover {
+    color: var(--text-color);
+}
+
+.user_tabs .tab .c_tab a {
+    color: var(--text-color);
+}
+
+.user_tabs .tab .c_tab a::after {
+    content: "";
+    left: -20%;
+    bottom: -25px;
+    height: 6px;
+    width: 140%;
+    background: var(--text-color);
+    position: absolute;
+}
+
+/* Setting Stylling Here */
+
+
+
+/* User Account Stylling Here */
+.container {
+    position: relative;
+    width: 70%;
+    margin-top: 3%;
+    margin-left: 15%;
+    background: var(--white-color);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.container a {
+    color: blue;
+    text-decoration: underline;
+}
+
+.container header {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 600;
+    position: absolute;
+    top: 5%;
+    text-align: center;
+}
+
+.container #user_edt {
+    position: absolute;
+    top: 5%;
+    font-size: 20px;
+    font-weight: 600;
+    right: 2%;
+}
+
+.container .form {
+    margin-top: 50px;
+    width: 100%;
+}
+
+.form .input-box {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.input-box label {
+    color: #333;
+}
+
+
+.form :where(.input-box input, .select-box) {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #707070;
+    margin-top: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+}
+
+.input-box input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form .column {
+    display: flex;
+    column-gap: 15px;
+}
+
+.form .gender-box {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.gender-box h3 {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.form :where(.gender-option, .gender) {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    flex-wrap: wrap;
+}
+
+.form .gender {
+    column-gap: 5px;
+}
+
+.gender input {
+    accent-color: rgb(130, 106, 251);
+}
+
+.form :where(.gender input, .gender label) {
+    cursor: pointer;
+}
+
+.gender label {
+    color: #707070;
+}
+
+.address :where(input, .select-box) {
+    margin-top: 15px;
+}
+
+.select-box select {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #707070;
+    font-size: 1rem;
+}
+
+.form button {
+    height: 55px;
+    width: 100%;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgb(130, 106, 251);
+}
+
+.form button:hover {
+    background: rgb(88, 56, 250);
+}
+
+#change_form input {
+    background: white;
+    cursor: pointer;
+}
+
+#cls_update_form {
+    position: absolute;
+    top: 5%;
+    font-size: 20px;
+    font-weight: 600;
+    right: 2%;
+}
+
+#change_form input::selection {
+    display: flex;
+}
+
+/*Responsive*/
+@media screen and (max-width: 500px) {
+    .form .column {
+        flex-wrap: wrap;
+    }
+
+    .form :where(.gender-option, .gender) {
+        row-gap: 15px;
+    }
+}
