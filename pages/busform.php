@@ -59,7 +59,7 @@ $selectedDuration = isset($_POST['months']) ? $_POST['months'] : '';
 <link rel="stylesheet" href="application.css">
 
 <div class="forms">
-    <h4 class="forms_tit"><i class='bx bx-bus-school'></i>Application</h4>
+    <h4 class="forms_tit">Bus ( <i class='bx bx-bus-school'></i> )Application</h4>
     <form action="#" method="post" enctype="multipart/form-data">
         <p class="section_tit">Personal Details</p>
         <div class="personal_dtl">

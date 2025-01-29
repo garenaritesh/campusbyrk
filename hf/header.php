@@ -8,7 +8,10 @@ if (!$_SESSION['logins']) {
     header("location:../users/login.php");
 }
 
-$user = $_SESSION['logins'];
+@$user = $_SESSION['logins'];
+$sql = "select * from users where email = '$user'";
+$query = mysqli_query($db, $sql);
+$data = mysqli_fetch_array($query);
 
 // Notification Data Read
 $sql = "SELECT * FROM notification WHERE user = '$user' ORDER BY date DESC";
@@ -46,7 +49,7 @@ $unread_count = mysqli_fetch_assoc($unread_count_result)['unread_count'];
     <!-- Nav -->
     <nav>
         <div class="logo">
-            <a href="../pages/index.php"> P<span>Mate</span> </a>
+            <a href="../pages/index.php"><span>C</span>ampus<span>C</span>orner</a>
         </div>
         <ul class="navlist">
             <li id="forms"><a href="#">Forms</a></li>
@@ -55,7 +58,8 @@ $unread_count = mysqli_fetch_assoc($unread_count_result)['unread_count'];
         </ul>
         <ul class="user_list">
             <a href="../users/notification.php"><i class='bx bx-bell'></i>
-                <span id="count_notifi" class="count <?php echo $unread_count > 0 ? 'show' : ''; ?>"><?php echo $unread_count; ?></span>
+                <span id="count_notifi"
+                    class="count <?php echo $unread_count > 0 ? 'show' : ''; ?>"><?php echo $unread_count; ?></span>
             </a>
             <li id="user_icon"><a href="../pages/user_account.php"><i class='bx bx-user'></i></a></li>
         </ul>

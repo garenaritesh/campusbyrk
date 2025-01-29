@@ -1,6 +1,8 @@
 /* About Page Stylling Here */
 /* Greate Stylling Here */
 
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
 /* Color Patterns */
 :root {
 
@@ -22,6 +24,10 @@
     --epcl-input-bg-color: #F9F9FE;
     --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     --header-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+    /* Success or Cnacel Page Stylling Variable */
+    --sc-back: #02ac70;
+    --sc-container: #1e1e2a;
 }
 
 body {
@@ -99,10 +105,11 @@ body {
 }
 
 .about .about_content .right {
-    font-family: 20px;
-    line-height: 1.5rem;
-    letter-spacing: 0.05rem;
-    color: var(--p-color);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6rem;
+    letter-spacing: 0.01rem;
+    color: var(--text-color);
 }
 
 .about .about_content .right .auto_slogo {
@@ -775,4 +782,127 @@ body {
     .form :where(.gender-option, .gender) {
         row-gap: 15px;
     }
+}
+
+/* Faq */
+
+.container .foq {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: auto;
+    padding: 5rem;
+    gap: 1rem;
+    flex-direction: column;
+
+}
+
+.container .foq h2 {
+    text-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.container .foq h2::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: 30px;
+    height: 5px;
+    background: var(--epcl-main-color);
+    cursor: pointer;
+}
+
+.container .foq .desclaimer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    align-items: start;
+    justify-content: start;
+    margin-top: 1rem;
+}
+
+.container .foq .desclaimer .desc_tit {
+
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: black;
+
+
+}
+
+.container .foq .desclaimer p {
+    columns: var(--epcl-text-color);
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 1.6rem;
+}
+
+.container .user_footer {
+    width: 100%;
+    padding: 0;
+    position: relative;
+}
+
+.container .user_footer img {
+    width: 105%;
+    margin-left: -2.5%;
+    object-fit: cover;
+}
+
+.container #delete_account {
+    position: absolute;
+    bottom: 12%;
+    text-decoration: underline;
+    left: 3%;
+}
+
+
+/* Payment Success Page Or Cancel Page */
+.sc-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--sc-container);
+}
+
+.sc-container img {
+    width: 200px;
+    margin: 2rem 0;
+    background-color: transparent;
+}
+
+.sc-container h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    color: var(--white-color);
+}
+
+.sc-container p {
+    max-width: 600px;
+    font-size: 0.970rem;
+    text-align: center;
+    color: var(--white-color);
+        margin: 0.5rem 0;
+}
+
+.sc-container .sc-btn {
+    padding: 12px 20px;
+    border-radius: 2rem;
+    background: var(--sc-back);
+    color: var(--white-color);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
 }

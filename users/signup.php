@@ -81,7 +81,6 @@ if (isset($_REQUEST['register'])) {
         text-decoration: none;
         color: blue;
     }
-
 </style>
 
 <body>
@@ -121,6 +120,8 @@ if (isset($_REQUEST['register'])) {
         const emailInput = document.getElementById('email');
         const phoneInput = document.getElementById('phone');
         const passwordInput = document.getElementById('password');
+        const submitButton = document.getElementById('submit-button');
+        const termsCheckbox = document.getElementById('terms-checkbox');
         const lengthFeedback = document.getElementById('length-feedback');
         const numberFeedback = document.getElementById('number-feedback');
         const specialFeedback = document.getElementById('special-feedback');
@@ -129,38 +130,6 @@ if (isset($_REQUEST['register'])) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const phoneRegex = /^(\+?\d{1,3}[-\s]?)?\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4}$/;
 
-        // Add event listener for real-time validation
-        emailInput.addEventListener('input', () => {
-            const emailValue = emailInput.value;
-
-            // Check if the email is valid
-            if (emailRegex.test(emailValue)) {
-                emailInput.classList.remove('invalid');
-                emailInput.classList.add('valid');
-            } else {
-                emailInput.classList.remove('valid');
-                emailInput.classList.add('invalid');
-            }
-        });
-
-        phoneInput.addEventListener('input', () => {
-            const phoneValue = phoneInput.value;
-
-            if (phoneRegex.test(phoneValue)) {
-                phoneInput.classList.remove('invalid');
-                phoneInput.classList.add('valid');
-                validPhoneMessage.style.display = 'block';
-                invalidPhoneMessage.style.display = 'none';
-            } else {
-                phoneInput.classList.remove('valid');
-                phoneInput.classList.add('invalid');
-                validPhoneMessage.style.display = 'none';
-                invalidPhoneMessage.style.display = 'block';
-            }
-        });
-
-        // Strong Password Validation Screipt 
-
         // Password validation criteria
         const lengthRegex = /.{8,}/;
         const uppercaseRegex = /[A-Z]/;
@@ -168,15 +137,29 @@ if (isset($_REQUEST['register'])) {
         const numberRegex = /[0-9]/;
         const specialRegex = /[!@#$%^&*(),.?":{}|<>]/;
 
-        passwordInput.addEventListener('input', () => {
+        function validateEmail() {
+            const emailValue = emailInput.value;
+            const isValid = emailRegex.test(emailValue);
+            emailInput.classList.toggle('valid', isValid);
+            emailInput.classList.toggle('invalid', !isValid);
+            return isValid;
+        }
+
+        function validatePhone() {
+            const phoneValue = phoneInput.value;
+            const isValid = phoneRegex.test(phoneValue);
+            phoneInput.classList.toggle('valid', isValid);
+            phoneInput.classList.toggle('invalid', !isValid);
+            return isValid;
+        }
+
+        function validatePassword() {
             const passwordValue = passwordInput.value;
 
-            // Validate each rule
             const isLengthValid = lengthRegex.test(passwordValue) && uppercaseRegex.test(passwordValue) && lowercaseRegex.test(passwordValue);
             const isNumberValid = numberRegex.test(passwordValue);
             const isSpecialValid = specialRegex.test(passwordValue);
 
-            // Update feedback line styles based on validation
             lengthFeedback.classList.toggle('valid', isLengthValid);
             lengthFeedback.classList.toggle('invalid', !isLengthValid);
 
@@ -186,31 +169,35 @@ if (isset($_REQUEST['register'])) {
             specialFeedback.classList.toggle('valid', isSpecialValid);
             specialFeedback.classList.toggle('invalid', !isSpecialValid);
 
-            // Check if all rules are valid for strong password
-            if (isLengthValid && isNumberValid && isSpecialValid) {
-                passwordInput.classList.remove('invalid');
-                passwordInput.classList.add('valid');
-            } else {
-                passwordInput.classList.remove('valid');
-                passwordInput.classList.add('invalid');
-            }
+            const isValid = isLengthValid && isNumberValid && isSpecialValid;
+            passwordInput.classList.toggle('valid', isValid);
+            passwordInput.classList.toggle('invalid', !isValid);
+            return isValid;
+        }
+
+        function enableSubmitButton() {
+            const isFormValid = validateEmail() && validatePhone() && validatePassword() && termsCheckbox.checked;
+            submitButton.disabled = !isFormValid;
+            submitButton.classList.toggle('enabled', isFormValid);
+        }
+
+        emailInput.addEventListener('input', () => {
+            validateEmail();
+            enableSubmitButton();
         });
 
-    </script>
+        phoneInput.addEventListener('input', () => {
+            validatePhone();
+            enableSubmitButton();
+        });
 
-    <!-- Checkbox of this form validation -->
-    <script>
-        const termsCheckbox = document.getElementById('terms-checkbox');
-        const submitButton = document.getElementById('submit-button');
+        passwordInput.addEventListener('input', () => {
+            validatePassword();
+            enableSubmitButton();
+        });
 
         termsCheckbox.addEventListener('change', () => {
-            if (termsCheckbox.checked) {
-                submitButton.disabled = false;
-                submitButton.classList.add('enabled');
-            } else {
-                submitButton.disabled = true;
-                submitButton.classList.remove('enabled');
-            }
+            enableSubmitButton();
         });
     </script>
 

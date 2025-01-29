@@ -1,3 +1,34 @@
+<!-- PHP SCRIPT TO INSERT SUBSCRIPTION STATUS -->
+<?php
+
+
+if (isset($_POST['subscribe'])) {
+
+    $email = $_POST['email'];
+    $subscribe = 'subscribe';
+
+    // Check Mail
+    $checkmail = "select * from users where email = '$email'";
+    $checkexu = mysqli_query($db, $checkmail);
+
+    if (mysqli_num_rows($checkexu) > 0) {
+        $subsql = "update users set subscription='$subscribe' where email='$email'";
+        $subresult = mysqli_query($db, $subsql);
+    } else {
+        echo "<style> .footer-col .hidden_mail_subscribe { display:flex; } </style>";
+    }
+
+}
+
+
+$fetchquery = "select subscription from users where email = '$user'";
+$fetchres = mysqli_query($db, $fetchquery);
+$fetchdata = mysqli_fetch_assoc($fetchres);
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +41,7 @@
 <body>
 
     <!-- Footer Section -->
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <div class="container_footer">
             <div class="row">
                 <div class="footer-col">
@@ -38,14 +69,28 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>follow us</h4>
+                    <h4 class="logo">CampusCorner<span class="span_dot"></span></h4>
                     <p>Bonafide Certificates for College Students in Just a Few Clicks!</p><br>
-                    <div class="social-links">
-                        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-                        <a href="#"><i class='bx bxl-twitter'></i></a>
-                        <a href="#"><i class='bx bxl-instagram'></i></a>
-                        <a href="#"><i class='bx bxl-linkedin'></i></a>
-                    </div>
+                    <?php if (isset($_SESSION['logins'])) {
+                        if ($fetchdata['subscription'] == 'subscribe') {
+                            ?>
+                            <p id="subscri_p">You are already subscribed to our newsletter</p>
+                        <?php } else { ?>
+                            <p id="subscri_p">The latest news , articles and resources sent your inbox weekly. Subscribe Now</p>
+                            <!-- Subscribe Input Field -->
+                            <form action="#" method="post">
+                                <input type="email" name="email" placeholder="Enter email" value="<?php echo $user; ?>" readonly
+                                    autocomplete="off" required>
+                                <button name="subscribe">Subscribe</button>
+                            </form>
+                            <p class="hidden_mail_subscribe">Email Not Exist !</p>
+
+
+                        <?php }
+                    } else { ?>
+                        <p id="subscri_p">You are not logged in. Please <a href="../users/login.php">login</a> to subscribe to</p>
+                    <?php } ?>
+
                 </div>
             </div>
         </div>
@@ -57,12 +102,12 @@
 
     <!-- Javascript file links Here -->
 
-    
+
 
     <script src="../js/script.js"></script>
 
 
-    
+
 
     <!-- Javascrip file link Here -->
 

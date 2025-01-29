@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Concert+One&family=Dancing+Script:wght@400..700&family=Permanent+Marker&family=Playwrite+GB+J+Guides:ital@0;1&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
 * {
     margin: 0;
@@ -86,15 +86,16 @@ a {
 .container h3 {
     font-size: 40px;
     color: var(--epcl-titles-color);
-    font-family: "Concert One", serif;
-    font-weight: 600;
+    font-family: "Oswald", serif;
+    font-weight: 1000;
     font-style: normal;
 }
 
 .container h3 span {
     color: var(--hover-text-color);
-    font-family: "Concert One", serif;
-    font-weight: 400;
+    font-family: "Oswald", serif;
+
+    font-weight: 1000;
     font-style: normal;
 }
 
@@ -182,6 +183,10 @@ a {
     justify-content: space-between;
 }
 
+.container form .desc p {
+    font-size: 15px;
+}
+
 .container form .desc p a {
     text-decoration: none;
     color: var(--hover-text-color);
@@ -251,4 +256,3 @@ a {
 }
 
 /* Delete Account Css Stylling Here */
-

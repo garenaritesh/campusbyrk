@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
         <h1>Login Failed | Data Dose'nt match</h1>";
 
         $redirectUrl = "login.php";
-        $timeout = 2000;
+        $timeout = 500;
 
     }
 }
@@ -56,8 +56,8 @@ if (isset($_REQUEST['check_email'])) {
     <!-- Body Content Here -->
     <div class="container">
         <h3>Pass<span>Mate</span></h3>
-        <form action="#" method="post">
-            <input type="text" name="email" placeholder="Email" required>
+        <form action="#" method="post" autocomplete="off">
+            <input type="text" name="email" placeholder="Email" required autocomplete="off">
             <input type="text" name="password" placeholder="Password" required>
             <button type="submit" id="login_btn" name="login">Login</button>
             <div class="desc">

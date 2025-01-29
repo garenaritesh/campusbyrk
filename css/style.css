@@ -1,6 +1,7 @@
 /* Google Fonts */
 /* @import url('https://fonts.googleapis.com/css2?family=Jost:wght@600&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
@@ -13,7 +14,7 @@
     /* font-family: "Montserrat", serif; */
     font-optical-sizing: auto;
     font-weight: 600;
-    font-family: Arial, Open Sans;
+    font-family: "Poppins", serif;
     /* font-style: normal; */
 }
 
@@ -86,6 +87,10 @@ body {
     flex-direction: column;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 /* Curoser Pointer */
 a,
 ul li,
@@ -113,8 +118,9 @@ a {
 nav {
     width: 100%;
     display: flex;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
     background: var(--white-color);
     backdrop-filter: blur(45px);
     align-items: center;
@@ -125,17 +131,39 @@ nav {
 }
 
 nav .logo {
-    font-size: 30px;
+    font-size: 18px;
 }
+
+nav #sign_btn {
+    padding: 0.8rem 3rem;
+    border: none;
+    outline: none;
+    background: black;
+    cursor: pointer;
+    color: var(--white-color);
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 2px;
+}
+
+
 
 nav .logo a {
-    color: var(--text-color);
+    color: black;
     text-decoration: none;
     cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 800;
+    position: relative;
+    font-family: "Oswald", serif;
 }
 
+
 nav .logo a span {
-    color: var(--hover-text-color);
+    /* color: var(--hover-text-color); */
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: "Oswald", serif;
 }
 
 nav ul {
@@ -145,20 +173,55 @@ nav ul {
 
 }
 
+nav .navlist li {
+    position: relative;
+    transition: all ease 0.2s;
+}
+
 nav .navlist li a {
     text-decoration: none;
     color: var(--text-color);
     cursor: pointer;
+    letter-spacing: -0.1px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all ease 0.5s;
 }
+
+nav .navlist li::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    left: 0;
+    bottom: -5px;
+    background: var(--epcl-main-color);
+    transition: all ease 0.2s;
+}
+
+/* nav .navlist li:hover::after {
+    width: 80%;
+} */
+
+nav .navlist li:hover a {
+    color: rgba(183, 22, 22, 0.806);
+}
+
+nav .navlist li:hover {
+    scale: 1.1;
+}
+
 
 nav .user_list a {
     position: relative;
+    font-size: 14px;
 }
 
 nav .user_list a i {
     color: var(--text-color);
     font-size: 18px;
     font-weight: 600;
+
 }
 
 nav .user_list a .notifi_count {
@@ -247,6 +310,25 @@ nav .user_list a .notifi_count {
     display: flex;
     align-items: center;
     gap: 1rem;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all ease 0.2s;
+}
+
+.extra_nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: var(--epcl-main-color);
+    transition: all ease 0.2s;
+}
+
+.extra_nav a:hover::after {
+    width: 105%;
+    left: -2.5%;
 }
 
 .extra_nav a:hover {
@@ -268,25 +350,28 @@ section {
 /* Intro Section Stylling Here */
 
 .intro {
-    width: 140%;
-    margin-left: -20%;
+    width: 150%;
+    margin-left: -25%;
     padding: 50px;
     border-radius: 0% 0% 100% 100% / 0% 0% 100% 97%;
     box-shadow: var(--box-shadow);
     background: black;
+    margin-top: 5%;
+    margin-bottom: 10%;
 }
 
 .intro .right {
     display: flex;
     align-items: start;
     justify-content: center;
-    width: 80%;
+    width: 100%;
 }
 
 .intro .right p {
     font-size: 30px;
+    color: rgb(203, 203, 217);
     margin-bottom: 1rem;
-    color: var(--white-color);
+    font-family: "Oswald", serif;
 }
 
 .intro .right .slogan button {
@@ -317,7 +402,7 @@ section {
 }
 
 .intro .left {
-    width: 40%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -349,8 +434,11 @@ section {
 
 .mission .paragraph-container {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto;
-    padding: 50px;
+    padding: 3rem;
     /* background: #fff; */
     border-radius: 10px;
     position: relative;
@@ -379,7 +467,7 @@ section {
     width: 80%;
     overflow: hidden;
     position: relative;
-    padding: 100px;
+    padding: 5rem;
 }
 
 .mission .mission-container img {
@@ -387,6 +475,55 @@ section {
     object-fit: cover;
 }
 
+.get_started {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.get_started h1 {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.get_started p {
+    font-size: 12px;
+    color: var(--epcl-text-color);
+}
+
+.get_started .action_btns {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.get_started .action_btns a {
+    cursor: pointer;
+}
+
+.get_started .action_btns a button {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 5px;
+    background: black;
+    color: var(--white-color);
+}
+
+.get_started .action_btns a:nth-child(2) button {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: black;
+    cursor: pointer;
+    transition: all ease 0.2s;
+}
+
+.get_started .action_btns a:nth-child(2) button:hover {
+    transform: scale(1.1);
+}
 
 /* Footer Section Styylling Here */
 
@@ -422,6 +559,7 @@ ul {
 
 .footer-col {
     width: 25%;
+    position: relative;
     padding: 0 15px;
 }
 
@@ -440,6 +578,8 @@ ul {
     font-family: "Oswald", serif;
 }
 
+
+
 .footer-col h4::before {
     content: '';
     position: absolute;
@@ -449,6 +589,27 @@ ul {
     height: 2px;
     box-sizing: border-box;
     width: 50px;
+}
+
+.footer-col .logo::before {
+    width: 0;
+}
+
+
+.footer-col .logo {
+    font-size: 30px;
+    font-weight: 1000;
+    position: relative;
+}
+
+.footer-col .logo .span_dot {
+    width: 10px;
+    height: 10px;
+    padding: 2px;
+    position: absolute;
+    border-radius: 50%;
+    bottom: 0.5rem;
+    background: var(--epcl-main-color);
 }
 
 .footer-col ul li:not(:last-child) {
@@ -470,8 +631,54 @@ ul {
     display: none;
 }
 
+/* Subscribe Form */
+.footer-col form {
+    display: flex;
+    padding: 2rem 0rem;
+    gap: 0.5rem;
+}
+
+.footer-col form input {
+    border-radius: 3px;
+    padding: 0.8rem;
+    background: var(--epcl-input-bg-color);
+    border: 1px solid var(--epcl-titles-color);
+    outline: none;
+}
+
+.footer-col form button {
+    padding: 0.5rem;
+    border: none;
+    outline: none;
+    background: rgb(203, 203, 217);
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+.footer-col .hidden_mail_subscribe {
+    position: absolute;
+    bottom: 0.2rem;
+    color: red;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    display: none;
+}
+
+#subscri_p {
+    color: rgb(203, 203, 217);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+#subscri_p a {
+    color: blue;
+    text-decoration: underline;
+}
+
 .footer-col ul li a:hover {
-    color: var(--epcl-input-bg-colorb);
+    color: var(--epcl-input-bg-color);
     padding-left: 8px;
 }
 

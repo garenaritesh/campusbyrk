@@ -47,7 +47,7 @@ $unread_count = mysqli_fetch_assoc($unread_count_result)['unread_count'];
     <!-- Nav -->
     <nav>
         <div class="logo">
-            <a href="../pages/index.php"> P<span>Mate</span> </a>
+            <a href="../pages/index.php"> <span>C</span>ampus<span>C</span>orner </a>
         </div>
         <ul class="navlist">
             <li id="forms"><a href="#">Forms</a></li>

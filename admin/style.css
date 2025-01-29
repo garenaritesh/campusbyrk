@@ -69,6 +69,32 @@ a {
     text-decoration: none;
 }
 
+/* Not Jobs Panel */
+#panel_not {
+
+    filter: blur(20px);
+    pointer-events: none;
+
+}
+
+#panel_not .left::selection,
+#panel_not .right::selection {
+    user-select: none;
+}
+
+.jobs {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: center;
+    color: rgb(12, 13, 27);
+    font-weight: 1000;
+    z-index: 99;
+}
+
 /* Nav Style */
 
 nav {
@@ -124,7 +150,7 @@ nav a {
 }
 
 .panel .left {
-    width: 17%;
+    width: 15%;
     position: relative;
     padding: 2rem;
     overflow: hidden;
@@ -143,7 +169,7 @@ nav a {
 
 .panel .left .menu a {
     width: 100%;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--epcl-text-color);
     padding: 10px;
     display: flex;
@@ -158,7 +184,7 @@ nav a {
 }
 
 .panel .right {
-    width: 83%;
+    width: 85%;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -167,6 +193,10 @@ nav a {
     height: 89vh;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.panel .right::-webkit-scrollbar {
+    display: none;
 }
 
 .panel .right .add_admin {
@@ -788,4 +818,112 @@ nav.blur,
     outline: none;
     border: none;
     border-radius: 2px;
+}
+
+/* order Page Stylling Here */
+
+.orders {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: start;
+    justify-content: start;
+}
+
+.orders .order_card {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    /* box-shadow: var(--box-shadow); */
+    border: 2px solid #e5e7eb;
+}
+
+.orders .order_card .order_col {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.orders .order_card .col1 {
+    width: 10%;
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.orders .order_card .col1 h2 {
+    font-size: 2.5rem;
+}
+
+
+.orders .order_card .col2{
+    gap: 1rem;
+    width: 30%;
+}
+.orders .order_card .col3,
+.orders .order_card .col4 {
+    gap: 1rem;
+    width: 30%;
+}
+
+.orders .order_card .col2 .product_name {
+    color: var(--hover-text-color);
+    font-weight: 400;
+    font-size: 0.970rem;
+}
+
+.orders .order_card .col2 .user_order_dtl h3 {
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+.orders .order_card .col2 .user_order_dtl p {
+    font-size: 14px;
+    max-width: 100%;
+    font-weight: 400;
+    color: var(--hover-text-color);
+}
+
+.orders .order_card .col3 p,
+.orders .order_card .col3 .product_dtl {
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.orders .order_card .col3 .product_dtl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.orders .order_card .col3 .product_dtl span {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    letter-spacing: 0.03rem;
+}
+
+.orders .order_card .col4 {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+
+.orders .order_card .col4 select {
+    padding: 0.5rem 1rem;
+    width: 70%;
+    border: 1px solid var(--epcl-border-color);
+}
+
+.orders .order_card .col4 select option {
+    padding: 0.6rem;
 }

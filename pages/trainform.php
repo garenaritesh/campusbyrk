@@ -39,7 +39,7 @@ if (isset($_REQUEST['submit'])) {
     move_uploaded_file($_FILES['signature']['tmp_name'], '../admin/images/' . $sign);
 
     mysqli_query($db, "insert into train_forms(full_name,phone,email,dob,age,cast,address,sem,department,gender,departure,destination,months,profile_pic,adhar_card,fees_receipt,i_card,signature,status) values('$full_name','$phone','$email','$dob','$age','$cast','$address','$sem','$department','$gender','$departure','$destination','$months','$profile_pic','$adhar','$fees','$i_card','$sign','pending')");
-    header("location:trainform.php");
+    header("location:user_account.php");
 
 
 }
@@ -56,8 +56,8 @@ $selectedDuration = isset($_POST['months']) ? $_POST['months'] : '';
 
 
 <div class="forms">
-    <h4 class="forms_tit"><i class='bx bx-train'></i>Application</h4>
-    <form action="trainform.php" method="post" enctype="multipart/form-data">
+    <h4 class="forms_tit">Train ( <i class='bx bx-train'></i> ) Application</h4>
+    <form action="#" method="post" enctype="multipart/form-data">
         <p class="section_tit">Personal Details</p>
         <div class="personal_dtl">
             <div class="form_group">
