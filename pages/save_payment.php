@@ -1,4 +1,8 @@
 <?php
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Include database connection
 require('../vendor/autoload.php');
 use Razorpay\Api\Api;
@@ -14,9 +18,12 @@ $order_id = $_POST['order_id'];
 $amount = $_POST['amount'];
 $user_id = $_POST['user_id'];
 $combo_id = $_POST['combo_id'];
+$branch = $_POST['branch'];
 $pincode = $_POST['pincode'];
 $street = $_POST['street'];
 $city = $_POST['city'];
+$quantity = $_POST['quantity'];
+$total_price = $amount * $quantity;
 
 // Debug: Check if data is being received correctly
 if (empty($payment_id) || empty($order_id) || empty($amount)) {
@@ -32,21 +39,39 @@ try {
         throw new Exception('Database connection failed: ' . $db->connect_error);
     }
 
-    // Update the order details with payment information
+    // Start a transaction to ensure both operations are successful
+    $db->begin_transaction();
+
+    // 1. Update the order details in `orders` table
     $sql = "UPDATE orders 
-            SET payment_id = ?, pincode = ?, street = ?, city = ?, amount = ?, status = 'completed', track_status = 'shipped' 
+            SET payment_id = ?, pincode = ?, street = ?, branch= '$branch', city = ?, quantity = '$quantity', amount = ?, status = 'completed', track_status = 'shipped' 
             WHERE order_id = ?";
     $stmt = $db->prepare($sql);
-    $stmt->bind_param('ssssds', $payment_id, $pincode, $street, $city, $amount, $order_id);
+    $stmt->bind_param('ssssds', $payment_id, $pincode, $street, $city, $total_price, $order_id);
 
-    // Execute the statement and check if it's successful
-    if ($stmt->execute()) {
-        echo json_encode(['success' => true]);
-    } else {
+    if (!$stmt->execute()) {
         throw new Exception('Error updating order: ' . $stmt->error);
     }
 
+    // 2. Insert payment details into the `payments` table
+    // Ensure the number of columns matches the number of values being inserted
+    $sql_payment = "INSERT INTO payments (payment_id, order_id, user_id, combo_id, branch, quantity, amount, pincode, street, city, status)
+                    VALUES (?, ?, ?, ?, '$branch', '$quantity', ?, ?, ?, ?, 'Paid')";
+    $stmt_payment = $db->prepare($sql_payment);
+    $stmt_payment->bind_param('sssdssss', $payment_id, $order_id, $user_id, $combo_id, $total_price, $pincode, $street, $city);
+
+    if (!$stmt_payment->execute()) {
+        throw new Exception('Error inserting payment details: ' . $stmt_payment->error);
+    }
+
+    // Commit the transaction if both queries succeed
+    $db->commit();
+
+    echo json_encode(['success' => true]);
+
 } catch (Exception $e) {
+    // Rollback the transaction if any error occurs
+    $db->rollback();
     echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
 ?>

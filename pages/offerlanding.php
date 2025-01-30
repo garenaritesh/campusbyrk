@@ -31,13 +31,17 @@ if (isset($_REQUEST['cod'])) {
     $pincode = $_REQUEST['pincode'];
     $city = $_REQUEST['city'];
 
+    // total price
+    $quentity = $_REQUEST['quantity'];
+    $total_price = $amount * $quentity;
+
 
     // Generate a unique order ID
     $order_id = 'ORD-' . date('YmdHis') . '-' . rand(1000, 9999);
 
 
     $sql = "INSERT INTO orders (order_id,user_id, combo_id, amount, status, track_status, pincode, city, street) 
-            VALUES ('$order_id','$user_id', '$combo_id', '$amount', 'cod', 'packing','$pincode','$city','$street')";
+            VALUES ('$order_id','$user_id', '$combo_id', '$total_price', 'cod', 'packing','$pincode','$city','$street')";
     $db->query($sql);
     header("location:success.php");
 
@@ -48,7 +52,7 @@ if (isset($_REQUEST['cod'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" oncontextmenu="return false">
 
 <head>
     <meta charset="UTF-8">
@@ -492,9 +496,9 @@ if (isset($_REQUEST['cod'])) {
                         </div>
                         <div class="price_dtl">
                             <div class="price_head">
-                                <span class="current_price">₹ <?php echo $vk['offer_price']; ?></span>
+                                <span class="current_price" id="current_price">₹ <?php echo $vk['offer_price']; ?></span>
                                 <span class="real_price">₹ <?php echo $vk['real_price']; ?></span>
-                                <span class="discount"><?php echo $vk['disount']; ?>% off</span>
+                                <span class="discount" id="discount"><?php echo $vk['disount']; ?>% off</span>
                             </div>
                             <div class="price_smal_desc">
                                 <span class="rate"><i class='bx bxs-star'></i>4</span> |
@@ -504,6 +508,23 @@ if (isset($_REQUEST['cod'])) {
 
                             <div class="pay_btn">
                                 <form method="post" id="paymentForm">
+                                    <h3>Quentity</h3>
+                                    <input type="number" name="quantity" id="quantity" value="1" autocomplete="off" required
+                                        oninput="updatePrice()" min="1">
+                                    <input type="hidden" id="basePrice" value="<?php echo $vk['offer_price']; ?>">
+                                    <!-- Select Branch -->
+                                    <?php if ($id == 3) { ?>
+                                        <select name="branch" id="branch" required>
+                                            <option value="" disabled selected>Select Department For Book</option>
+                                            <option value="Civil">Civil Eng.</option>
+                                            <option value="Mechanical">Mechanical Eng.</option>
+                                            <option value="Plastic">Plastic Eng.</option>
+                                            <option value="Chemical">Chemical Eng.</option>
+                                            <option value="I.T">Information Technology</option>
+                                        </select>
+                                    <?php } else { ?>
+                                    <?php } ?>
+                                    <!-- PHP Price -->
                                     <h3>Delivery Information</h3>
                                     <input type="text" name="street" id="street" placeholder="Street Address" required>
                                     <input type="text" name="city" id="city" placeholder="City" required>
@@ -512,11 +533,17 @@ if (isset($_REQUEST['cod'])) {
                                         <input type="text" name="pincode" id="pincode" placeholder="pincode" required>
                                     </div>
                                     <h3>Payment Methods</h3>
-                                    <button name="cod">Cash On Delivery</button>
+                                    <div class="pay_methods">
+                                        <div class="method" id="razorpay_method"> <span id="raz_check"></span> <img
+                                                src="../admin/assets/razorpay.png" alt="">
+                                        </div>
+                                        <div class="method" id="cod_method"> <span id="cod_check"></span> COD </div>
+                                    </div>
+                                    <button name="cod" id="cod_btn">Place Order</button>
                                     <button type="button" class="buynow" id="payWithRazorpayBtn"
                                         data-price="<?php echo $vk['offer_price']; ?>" data-combo="<?php echo $id; ?>"
                                         data-user="<?php echo $data['user_id']; ?> ">
-                                        Pay via <img src="../admin/assets/razorpay.png" alt="">
+                                        Place via <img src="../admin/assets/razorpay.png" alt="">
                                     </button>
                                 </form>
                             </div>
@@ -547,6 +574,31 @@ if (isset($_REQUEST['cod'])) {
 
     <!-- Payment Gateway Scrpt -->
 
+    <!-- For Quantity System -->
+    <script>
+        function updatePrice() {
+            let quantity = document.getElementById("quantity").value || 1; // Get quantity (default 1)
+            let basePrice = document.getElementById("basePrice").value; // Get base price
+            let totalPrice = quantity * basePrice; // Calculate total price
+            const extra_discount = document.getElementById("discount");
+
+            // Apply 5% discount if quantity is 2 or more
+            if (quantity >= 2) {
+                let discount = totalPrice * 0.05; // 5% of total price
+                totalPrice -= discount; // Subtract discount
+                extra_discount.innerHTML = '30% + 5% Off';
+            }
+            else {
+                extra_discount.innerHTML = ' 30% off';
+            }
+
+            let button = document.getElementById("payWithRazorpayBtn"); // Select button
+            button.setAttribute("data-price", totalPrice.toFixed(2)); // Update data-price
+
+            document.getElementById("current_price").innerHTML = totalPrice.toFixed(2); // Update displayed price
+        }
+    </script>
+
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         document.getElementById('payWithRazorpayBtn').addEventListener('click', function () {
@@ -567,6 +619,8 @@ if (isset($_REQUEST['cod'])) {
             let pincode = document.getElementById("pincode").value;
             let street = document.getElementById("street").value;
             let city = document.getElementById("city").value;
+            let quantity = document.getElementById("quantity").value;
+            let branch = document.getElementById("branch").value;
 
             // Create order in Razorpay via PHP
             fetch('checkout.php', {
@@ -576,9 +630,11 @@ if (isset($_REQUEST['cod'])) {
                     amount,
                     user_id,
                     combo_id,
+                    branch,
                     pincode,
                     street,
-                    city
+                    city,
+                    quantity,
                 })
             })
                 .then(response => response.json())
@@ -591,7 +647,7 @@ if (isset($_REQUEST['cod'])) {
                         "description": "Payment for Combo Offer",
                         "order_id": data.order_id,
                         "handler": function (response) {
-                            savePayment(response, amount, user_id, combo_id, pincode, street, city);
+                            savePayment(response, amount, user_id, combo_id, branch, pincode, street, city, quantity);
                         },
                         "theme": {
                             "color": "#000"
@@ -604,7 +660,7 @@ if (isset($_REQUEST['cod'])) {
         });
 
         // Function to store payment details
-        function savePayment(response, amount, user_id, combo_id, pincode, street, city) {
+        function savePayment(response, amount, user_id, combo_id, branch, pincode, street, city, quantity) {
             fetch('save_payment.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -614,24 +670,73 @@ if (isset($_REQUEST['cod'])) {
                     amount: amount,
                     user_id: user_id,
                     combo_id: combo_id,
+                    branch: branch,
                     pincode: pincode,
                     street: street,
-                    city: city
+                    city: city,
+                    quantity: quantity
                 })
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {
+                        // Redirect to success page if payment details are saved successfully
                         window.location.href = "success.php";
                     } else {
+                        // If an error occurs, show a message and redirect to the cancel page
+                        alert(data.message || 'Payment failed, please try again.');
                         window.location.href = "cancel.php";
                     }
+                })
+                .catch(error => {
+                    // Handle any other errors
+                    alert('Error saving payment details: ' + error);
+                    window.location.href = "cancel.php";
                 });
         }
 
     </script>
 
+    <!-- Payment Methods Script -->
 
+    <script>
+
+        // Check Box
+        const RazCheck = document.getElementById("raz_check");
+        const CodCheck = document.getElementById("cod_check");
+
+        RazCheck.classList.add("active_pay");
+
+        // Function to handle payment methods
+        const CODBTN = document.getElementById("cod_btn");
+        const RazorpayBTN = document.getElementById("payWithRazorpayBtn");
+        const CODMethod = document.getElementById("cod_method");
+        const RazorpayMethod = document.getElementById("razorpay_method");
+
+
+
+        RazorpayMethod.addEventListener("click", () => {
+
+            RazorpayBTN.style.display = "flex";
+            CODBTN.style.display = "none";
+            RazCheck.classList.add("active_pay");
+            CodCheck.classList.remove("active_pay");
+
+
+        });
+
+        CODMethod.addEventListener("click", () => {
+
+            CODBTN.style.display = "flex";
+            RazorpayBTN.style.display = "none";
+            CodCheck.classList.add("active_pay");
+            RazCheck.classList.remove("active_pay");
+
+        })
+
+
+
+    </script>
 
 
     <!-- Payment Terms Script -->

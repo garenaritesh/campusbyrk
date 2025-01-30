@@ -2,6 +2,9 @@
 
 include("main_adminpanel.php");
 
+// Delete Order They Are Pending
+// $del_pending_query = "delete from orders where status"
+
 $users = "select * from users";
 $res = mysqli_query($db, $users);
 
@@ -101,15 +104,15 @@ $count_offers = mysqli_num_rows($res_offers);
                             }
                             ?>
                             <p><?php echo $user_fetch['phone'] ?></p>
-                            <p>Sumandham Society , Navagaam</p>
-                            <p>Surat , Gujrat - 394210 </p>
+                            <p><?php echo $row['street'];?></p>
+                            <p><?php echo $row['city']?> , Gujrat - <?php echo $row['pincode'];?> </p>
                         </div>
                     </div>
                     <div class="order_col col3">
-                        <p class="product_q">Quentity:1</p>
+                        <p class="product_q">Quentity: <?php echo $row['quantity']?> </p>
                         <div class="product_dtl">
-                            <span>Price: <i class='bx bx-rupee'></i> <?php echo $offer_name_fetch['offer_price']; ?></span>
-                            <span>Method: COD </span>
+                            <span>Price: <i class='bx bx-rupee'></i> <?php echo $row['amount']; ?></span>
+                        <span>Method: <?php if($row['status'] == 'completed'){ echo 'Online';} else if($row['status'] == 'pending') { echo 'Order Not Confirm'; } else { echo 'COD'; }?> </span>
                             <span>Payment: <?php echo $row['status']; ?></span>
                             <span>Date: <?php echo date("M d, Y - h:i A", strtotime($row['created_at'])) ?> </span>
                         </div>

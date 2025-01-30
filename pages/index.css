@@ -908,6 +908,14 @@
     font-weight: 600;
     margin: 0.5rem 0rem;
 }
+.offer_details_container .right .combo_checkout .price_dtl .pay_btn form select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--epcl-border-color);
+    color: var(--hover-text-color);
+    margin-bottom: 0.5rem;
+}
+
 
 .offer_details_container .right .combo_checkout .price_dtl .pay_btn form input {
     padding: 0.5rem;
@@ -918,6 +926,10 @@
     margin-bottom: 0.5rem;
 }
 
+.offer_details_container .right .combo_checkout .price_dtl .pay_btn form input::-webkit-inner-spin-button{
+    display: none;
+}
+
 .offer_details_container .right .combo_checkout .price_dtl .pay_btn form .pincode_group {
     width: 100%;
     display: flex;
@@ -926,7 +938,51 @@
     gap: 0.3rem;
 }
 
+.offer_details_container .right .combo_checkout .price_dtl .pay_btn .pay_methods {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
 
+.offer_details_container .right .combo_checkout .price_dtl .pay_btn .pay_methods .method {
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    border: 1px solid var(--epcl-border-color);
+    font-size: 14px;
+    height: 2.5rem;
+
+}
+
+#cod_btn {
+    display: none;
+}
+
+#payWithRazorpayBtn {
+    display: flex;
+}
+
+.offer_details_container .right .combo_checkout .price_dtl .pay_btn .pay_methods .method span {
+    /* padding: 0.3rem; */
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 1px solid var(--epcl-border-color);
+}
+
+.offer_details_container .right .combo_checkout .price_dtl .pay_btn .pay_methods .method span.active_pay {
+    background: rgb(36, 231, 36);
+}
+
+.offer_details_container .right .combo_checkout .price_dtl .pay_btn .pay_methods .method img {
+    width: 80px;
+}
 
 
 .offer_details_container .right .combo_checkout .price_dtl .pay_btn button {
