@@ -35,7 +35,7 @@ if (isset($_REQUEST['send_msg'])) {
             <div class="container">
                 <form action="#" method="post">
                     <h3>Sending Messages To users</h3>
-                    <textarea name="message" id="" rows="10" placeholder="Message"></textarea>
+                    <textarea name="message" id="" rows="10" placeholder="Message" required></textarea>
                     <button name="send_msg">Send</button>
                 </form>
             </div>

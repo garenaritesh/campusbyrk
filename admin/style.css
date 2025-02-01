@@ -195,8 +195,50 @@ nav a {
     overflow-x: hidden;
 }
 
+.panel .right .orders_tab {
+    position: absolute;
+    left: 40%;
+    top: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+}
+
+.panel .right .orders_tab .co_tab {
+    border: none;
+    outline: none;
+    padding: 0.6rem 1rem;
+    background: black;
+    color: var(--white-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.panel .right .orders_tab button {
+    border: none;
+    outline: none;
+    padding: 0.6rem 1rem;
+    color: black;
+    border: 1px solid var(--hover-text-color);
+    background: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .panel .right::-webkit-scrollbar {
     display: none;
+}
+
+.panel .right .no_orders {
+    width: 100%;
+    padding: 5rem;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.panel .right .no_orders h2 {
+    font-size: 2rem;
 }
 
 .panel .right .add_admin {
@@ -862,10 +904,11 @@ nav.blur,
 }
 
 
-.orders .order_card .col2{
+.orders .order_card .col2 {
     gap: 1rem;
     width: 30%;
 }
+
 .orders .order_card .col3,
 .orders .order_card .col4 {
     gap: 1rem;
@@ -917,13 +960,26 @@ nav.blur,
     justify-content: start;
 }
 
+.orders .order_card .col4 form {
+    width: 80%;
+}
 
-.orders .order_card .col4 select {
+
+.orders .order_card .col4 form select {
     padding: 0.5rem 1rem;
-    width: 70%;
+    width: 100%;
     border: 1px solid var(--epcl-border-color);
 }
 
-.orders .order_card .col4 select option {
+.orders .order_card .col4 form select option {
     padding: 0.6rem;
+}
+
+.orders .order_card .col4 form button {
+    padding: 0.5rem 2rem;
+    border: none;
+    outline: none;
+    background: black;
+    color: var(--white-color);
+    margin-top: 5%;
 }

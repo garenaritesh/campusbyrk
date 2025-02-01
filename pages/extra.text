@@ -651,3 +651,16 @@ $data = mysqli_fetch_array($query);
     include("../hf/footer.php");
 
     ?>
+
+
+
+      <?php if ($order_row['track_status'] == "Packing") {
+                            echo "<p><span></span>📦 Packing</p>";
+                        } else if ($order_row['track_status'] == "Shipped") {
+                            echo "<p><span></span>🚚 Shipping</p>";
+                        } else if ($order_row['track_status'] == 'Out of Delivery') {
+                            echo "<p><span></span>🚛 Out for Delivery</p>";
+                        } else {
+                            echo "<p><span></span>📬 Delivered</p>";
+                        }
+                        ?>

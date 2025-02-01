@@ -134,6 +134,16 @@ nav .logo {
     font-size: 18px;
 }
 
+nav .menu {
+    display: none;
+}
+
+nav .menu a{
+    color: var(--epcl-titles-color);
+    font-size: 25px;
+    font-weight: 1000;
+}
+
 nav #sign_btn {
     padding: 0.8rem 3rem;
     border: none;
@@ -758,3 +768,6 @@ ul {
 .user_extra_nav a i {
     font-weight: 600;
 }
+
+
+/* Media Css Here */

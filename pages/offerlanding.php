@@ -32,16 +32,16 @@ if (isset($_REQUEST['cod'])) {
     $city = $_REQUEST['city'];
 
     // total price
-    $quentity = $_REQUEST['quantity'];
-    $total_price = $amount * $quentity;
+    $quantity = $_REQUEST['quantity'];
+    $total_price = $amount * $quantity;
 
 
     // Generate a unique order ID
     $order_id = 'ORD-' . date('YmdHis') . '-' . rand(1000, 9999);
 
 
-    $sql = "INSERT INTO orders (order_id,user_id, combo_id, amount, status, track_status, pincode, city, street) 
-            VALUES ('$order_id','$user_id', '$combo_id', '$total_price', 'cod', 'packing','$pincode','$city','$street')";
+    $sql = "INSERT INTO orders (order_id,user_id, combo_id, branch, quantity, amount, status, track_status, pincode, city, street) 
+            VALUES ('$order_id','$user_id', '$combo_id', 'not branch', '$quantity', '$total_price', 'cod', 'Packing','$pincode','$city','$street')";
     $db->query($sql);
     header("location:success.php");
 
@@ -52,7 +52,9 @@ if (isset($_REQUEST['cod'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en" oncontextmenu="return false">
+<html lang="en">
+
+<!-- oncontextmenu="return false" -->
 
 <head>
     <meta charset="UTF-8">
@@ -523,6 +525,7 @@ if (isset($_REQUEST['cod'])) {
                                             <option value="I.T">Information Technology</option>
                                         </select>
                                     <?php } else { ?>
+
                                     <?php } ?>
                                     <!-- PHP Price -->
                                     <h3>Delivery Information</h3>
@@ -600,102 +603,199 @@ if (isset($_REQUEST['cod'])) {
     </script>
 
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script>
-        document.getElementById('payWithRazorpayBtn').addEventListener('click', function () {
-            const form = document.getElementById("paymentForm");
+    <?php if ($id == 3) { ?>
+        <script>
+            document.getElementById('payWithRazorpayBtn').addEventListener('click', function () {
+                const form = document.getElementById("paymentForm");
 
-            // Check if form is valid
-            if (!form.checkValidity()) {
-                form.reportValidity(); // Show validation messages
-                return; // Stop execution if form is invalid
+                // Check if form is valid
+                if (!form.checkValidity()) {
+                    form.reportValidity(); // Show validation messages
+                    return; // Stop execution if form is invalid
+                }
+
+                // If form is valid, proceed with Razorpay payment
+                let amount = this.getAttribute("data-price");
+                let user_id = this.getAttribute("data-user");
+                let combo_id = this.getAttribute("data-combo");
+
+                // Collect address details from form
+                let pincode = document.getElementById("pincode").value;
+                let street = document.getElementById("street").value;
+                let city = document.getElementById("city").value;
+                let quantity = document.getElementById("quantity").value;
+                let branch = document.getElementById("branch").value;
+
+                // Create order in Razorpay via PHP
+                fetch('checkout.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        amount,
+                        user_id,
+                        combo_id,
+                        branch,
+                        pincode,
+                        street,
+                        city,
+                        quantity,
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        let options = {
+                            "key": data.key,
+                            "amount": parseInt(amount),
+                            "currency": "INR",
+                            "name": "Campus Corner",
+                            "description": "Payment for Combo Offer",
+                            "order_id": data.order_id,
+                            "handler": function (response) {
+                                savePayment(response, amount, user_id, combo_id, branch, pincode, street, city, quantity);
+                            },
+                            "theme": {
+                                "color": "#000"
+                            }
+                        };
+
+                        let rzp = new Razorpay(options);
+                        rzp.open();
+                    });
+            });
+
+            // Function to store payment details
+            function savePayment(response, amount, user_id, combo_id, branch, pincode, street, city, quantity) {
+                fetch('save_payment.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        payment_id: response.razorpay_payment_id,
+                        order_id: response.razorpay_order_id,
+                        amount: amount,
+                        user_id: user_id,
+                        combo_id: combo_id,
+                        branch: branch,
+                        pincode: pincode,
+                        street: street,
+                        city: city,
+                        quantity: quantity
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Redirect to success page if payment details are saved successfully
+                            window.location.href = "success.php";
+                        } else {
+                            // If an error occurs, show a message and redirect to the cancel page
+                            alert(data.message || 'Payment failed, please try again.');
+                            window.location.href = "cancel.php";
+                        }
+                    })
+                    .catch(error => {
+                        // Handle any other errors
+                        alert('Error saving payment details: ' + error);
+                        window.location.href = "cancel.php";
+                    });
             }
 
-            // If form is valid, proceed with Razorpay payment
-            let amount = this.getAttribute("data-price");
-            let user_id = this.getAttribute("data-user");
-            let combo_id = this.getAttribute("data-combo");
+        </script>
 
-            // Collect address details from form
-            let pincode = document.getElementById("pincode").value;
-            let street = document.getElementById("street").value;
-            let city = document.getElementById("city").value;
-            let quantity = document.getElementById("quantity").value;
-            let branch = document.getElementById("branch").value;
+    <?php } else { ?>
+        <script>
+            document.getElementById('payWithRazorpayBtn').addEventListener('click', function () {
+                const form = document.getElementById("paymentForm");
 
-            // Create order in Razorpay via PHP
-            fetch('checkout.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({
-                    amount,
-                    user_id,
-                    combo_id,
-                    branch,
-                    pincode,
-                    street,
-                    city,
-                    quantity,
+                // Check if form is valid
+                if (!form.checkValidity()) {
+                    form.reportValidity(); // Show validation messages
+                    return; // Stop execution if form is invalid
+                }
+
+                // If form is valid, proceed with Razorpay payment
+                let amount = this.getAttribute("data-price");
+                let user_id = this.getAttribute("data-user");
+                let combo_id = this.getAttribute("data-combo");
+
+                // Collect address details from form
+                let pincode = document.getElementById("pincode").value;
+                let street = document.getElementById("street").value;
+                let city = document.getElementById("city").value;
+                let quantity = document.getElementById("quantity").value;
+
+                // Create order in Razorpay via PHP
+                fetch('checkout.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        amount,
+                        user_id,
+                        combo_id,
+                        pincode,
+                        street,
+                        city,
+                        quantity,
+                    })
                 })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    let options = {
-                        "key": data.key,
-                        "amount": parseInt(amount) * 100,
-                        "currency": "INR",
-                        "name": "Campus Corner",
-                        "description": "Payment for Combo Offer",
-                        "order_id": data.order_id,
-                        "handler": function (response) {
-                            savePayment(response, amount, user_id, combo_id, branch, pincode, street, city, quantity);
-                        },
-                        "theme": {
-                            "color": "#000"
+                    .then(response => response.json())
+                    .then(data => {
+                        let options = {
+                            "key": data.key,
+                            "amount": parseInt(amount),
+                            "currency": "INR",
+                            "name": "Campus Corner",
+                            "description": "Payment for Combo Offer",
+                            "order_id": data.order_id,
+                            "handler": function (response) {
+                                savePayment(response, amount, user_id, combo_id, pincode, street, city, quantity);
+                            },
+                            "theme": {
+                                "color": "#000"
+                            }
+                        };
+
+                        let rzp = new Razorpay(options);
+                        rzp.open();
+                    });
+            });
+
+            // Function to store payment details
+            function savePayment(response, amount, user_id, combo_id, pincode, street, city, quantity) {
+                fetch('save_payment.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        payment_id: response.razorpay_payment_id,
+                        order_id: response.razorpay_order_id,
+                        amount: amount,
+                        user_id: user_id,
+                        combo_id: combo_id,
+                        pincode: pincode,
+                        street: street,
+                        city: city,
+                        quantity: quantity
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Redirect to success page if payment details are saved successfully
+                            window.location.href = "success.php";
+                        } else {
+                            // If an error occurs, show a message and redirect to the cancel page
+                            alert(data.message || 'Payment failed, please try again.');
+                            window.location.href = "cancel.php";
                         }
-                    };
-
-                    let rzp = new Razorpay(options);
-                    rzp.open();
-                });
-        });
-
-        // Function to store payment details
-        function savePayment(response, amount, user_id, combo_id, branch, pincode, street, city, quantity) {
-            fetch('save_payment.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({
-                    payment_id: response.razorpay_payment_id,
-                    order_id: response.razorpay_order_id,
-                    amount: amount,
-                    user_id: user_id,
-                    combo_id: combo_id,
-                    branch: branch,
-                    pincode: pincode,
-                    street: street,
-                    city: city,
-                    quantity: quantity
-                })
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        // Redirect to success page if payment details are saved successfully
-                        window.location.href = "success.php";
-                    } else {
-                        // If an error occurs, show a message and redirect to the cancel page
-                        alert(data.message || 'Payment failed, please try again.');
+                    })
+                    .catch(error => {
+                        // Handle any other errors
+                        alert('Error saving payment details: ' + error);
                         window.location.href = "cancel.php";
-                    }
-                })
-                .catch(error => {
-                    // Handle any other errors
-                    alert('Error saving payment details: ' + error);
-                    window.location.href = "cancel.php";
-                });
-        }
+                    });
+            }
 
-    </script>
+        </script>
+    <?php } ?>
 
     <!-- Payment Methods Script -->
 

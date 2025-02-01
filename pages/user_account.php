@@ -119,6 +119,7 @@ if ($ca < 1) {
 <!-- User Tabs -->
 <div class="user_tabs">
     <ul class="tab">
+        <li><a href="../users/orders.php">Orders</a></li>
         <li class="c_tab"><a href="../pages/user_account.php">Passes</a></li>
         <li><a href="../users/user_info.php">Account</a></li>
         <li><a href="../users/notification.php">Notification</a></li>

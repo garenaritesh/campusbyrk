@@ -18,12 +18,18 @@ $order_id = $_POST['order_id'];
 $amount = $_POST['amount'];
 $user_id = $_POST['user_id'];
 $combo_id = $_POST['combo_id'];
-$branch = $_POST['branch'];
+if($combo_id == 3) {
+    $branch = $_POST['branch'];
+}
+else {
+    $branch = '';
+}
 $pincode = $_POST['pincode'];
 $street = $_POST['street'];
 $city = $_POST['city'];
 $quantity = $_POST['quantity'];
-$total_price = $amount * $quantity;
+$total_price = $amount * $quantity; // Convert from paise to INR
+
 
 // Debug: Check if data is being received correctly
 if (empty($payment_id) || empty($order_id) || empty($amount)) {
@@ -44,7 +50,7 @@ try {
 
     // 1. Update the order details in `orders` table
     $sql = "UPDATE orders 
-            SET payment_id = ?, pincode = ?, street = ?, branch= '$branch', city = ?, quantity = '$quantity', amount = ?, status = 'completed', track_status = 'shipped' 
+            SET payment_id = ?, pincode = ?, street = ?, branch= '$branch', city = ?, quantity = '$quantity', amount = ?, status = 'completed', track_status = 'Packing' 
             WHERE order_id = ?";
     $stmt = $db->prepare($sql);
     $stmt->bind_param('ssssds', $payment_id, $pincode, $street, $city, $total_price, $order_id);

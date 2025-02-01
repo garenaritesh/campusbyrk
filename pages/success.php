@@ -16,7 +16,7 @@
         <h1>Payment Successful!</h1>
         <p>Your order will arrive in 5-7 days.</p>
         <img src="../admin/assets/success.png" alt="">
-        <a href="#" class="sc-btn">Track Your Combo 📦</a>
+        <a href="../users/orders.php" class="sc-btn">Track Your Combo 📦</a>
     </section>
 
 </body>

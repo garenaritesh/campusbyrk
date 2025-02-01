@@ -99,6 +99,7 @@ $user_info = mysqli_fetch_assoc(mysqli_query($db, $sql));
 <!-- User Tabs -->
 <div class="user_tabs">
     <ul class="tab">
+        <li><a href="orders.php">Orders</a></li>
         <li><a href="../pages/user_account.php">Passes</a></li>
         <li class="c_tab"><a href="user_info.php">Account</a></li>
         <li><a href="notification.php">Notification</a></li>

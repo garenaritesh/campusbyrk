@@ -9,12 +9,11 @@ $users = "select * from users";
 $res = mysqli_query($db, $users);
 
 // Fetch Orders 
-$order_query = "select * from orders where track_status = 'Packing'";
+$order_query = "select * from orders where track_status = 'Delivered'";
 $res_orders = mysqli_query($db, $order_query);
 $count_orders = mysqli_num_rows($res_orders);
-$fetch_order_id = mysqli_fetch_assoc(mysqli_query($db,$order_query));
+$fetch_order_id = mysqli_fetch_assoc(mysqli_query($db, $order_query));
 @$order_id = $fetch_order_id['order_id'];
-
 
 // Offers Combo Data Fetch 
 $offer_query = "select * from offers";
@@ -22,18 +21,17 @@ $res_offers = mysqli_query($db, $offer_query);
 $count_offers = mysqli_num_rows($res_offers);
 
 
+// Update Track Status
 
-// Update Product Track Status
-
-
+// Update Track Status
 if (isset($_REQUEST['update_track'])) {
 
     $track_change_value = $_REQUEST['track_status'];
 
-    if ($track_change_value == 'Shipped') {
-        $update_track_query = "update orders set track_status='Shipped' where order_id = '$order_id'";
+    if ($track_change_value == 'Order Placed') {
+        $update_track_query = "update orders set track_status='Order Placed' where order_id = '$order_id'";
         mysqli_query($db, $update_track_query);
-        header("location: orders.php");
+        header("location: delivered.php");
     } else {
         echo "<script>
         alert('Please Select Further Proccess');</script>
@@ -63,10 +61,10 @@ if (isset($_REQUEST['update_track'])) {
 
     <!-- Orders Tabs To Manage -->
     <div class="orders_tab">
-        <button class="co_tab" onclick="location.href='orders.php'">New Orders</button>
+        <button onclick="location.href='orders.php'">New Orders</button>
         <button onclick="location.href='shipped_orders.php'">Shipped Orders</button>
         <button onclick="location.href='outdelivery.php'">Out Of Delivers</button>
-        <button onclick="location.href='delivered.php'">Delivered Orders</button>
+        <button class="co_tab" onclick="location.href='delivered.php'">Delivered Orders</button>
         <button onclick="location.href='cancelorders.php'">Cancel Orders</button>
     </div>
 
@@ -77,7 +75,7 @@ if (isset($_REQUEST['update_track'])) {
     <?php
     if ($count_orders > 0) {
         ?>
-        <!-- New Orders -->
+        <!-- Shipped Orders -->
         <div class="orders">
             <?php
             while ($row = mysqli_fetch_assoc($res_orders)) {
@@ -144,7 +142,7 @@ if (isset($_REQUEST['update_track'])) {
                         </div>
                     </div>
                     <div class="order_col col4">
-                        <form action="#" method="post">
+                        <form action="#">
                             <select name="track_status">
                                 <!-- <option value="">Select Category</option> -->
                                 <?php
@@ -158,8 +156,6 @@ if (isset($_REQUEST['update_track'])) {
 
                             </select>
 
-                            <div id="response"></div>
-
                             <button name="update_track">Save</button>
 
                         </form>
@@ -170,29 +166,11 @@ if (isset($_REQUEST['update_track'])) {
         <?php
     } else { ?>
         <div class="no_orders">
-            <h2>No Orders Found</h2>
+            <h2>No Delivered Orders Found</h2>
         </div>
     <?php } ?>
 
 
-    <script>
-        $(document).ready(function () {
-            $("#selectOption").change(function () {
-                var selectedValue = $(this).val(); // Get selected value
-
-                $.ajax({
-                    url: "save.php",
-                    type: "POST",
-                    data: { option: selectedValue },
-                    success: function (response) {
-                        $("#response").html(response); // Show success message
-                    }
-                });
-            });
-        });
-    </script>
-
-    <!-- Shipped Orders -->
 
 
     <!-- Javascript Content Here -->

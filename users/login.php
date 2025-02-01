@@ -48,6 +48,7 @@ if (isset($_REQUEST['check_email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Login | PassMate </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -55,7 +56,7 @@ if (isset($_REQUEST['check_email'])) {
 
     <!-- Body Content Here -->
     <div class="container">
-        <h3>Pass<span>Mate</span></h3>
+        <h3>Campus<span>Corner</span></h3>
         <form action="#" method="post" autocomplete="off">
             <input type="text" name="email" placeholder="Email" required autocomplete="off">
             <input type="text" name="password" placeholder="Password" required>

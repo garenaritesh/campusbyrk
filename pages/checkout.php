@@ -11,7 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $amount = $_POST['amount'] * 100; // Convert to paise (smallest unit in INR)
     $user_id = $_POST['user_id'];
     $combo_id = $_POST['combo_id'];
-    $branch = $_POST['branch'];
+    if ($combo_id == 3) {
+        $branch = $_POST['branch'];
+    }
+    else{
+        $branch = "default";
+    }
     $quantity = $_POST['quantity'];
     $total_price = $amount * $quantity;
 

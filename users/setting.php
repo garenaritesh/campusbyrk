@@ -22,7 +22,7 @@ $user_info = mysqli_fetch_assoc(mysqli_query($db, $sql));
         align-items: center;
         justify-content: center;
     }
-    
+
 
     .setting_content button {
         width: 300px;
@@ -42,7 +42,6 @@ $user_info = mysqli_fetch_assoc(mysqli_query($db, $sql));
     .setting p {
         text-align: center;
     }
-
 </style>
 
 <!-- User Notification -->
@@ -80,6 +79,7 @@ $user_info = mysqli_fetch_assoc(mysqli_query($db, $sql));
 <!-- User Tabs -->
 <div class="user_tabs">
     <ul class="tab">
+        <li><a href="orders.php">Orders</a></li>
         <li><a href="../pages/user_account.php">Passes</a></li>
         <li><a href="user_info.php">Account</a></li>
         <li><a href="notification.php">Notification</a></li>
@@ -99,8 +99,8 @@ $user_info = mysqli_fetch_assoc(mysqli_query($db, $sql));
     </div>
 
     <!-- Passmate instruction -->
-     <p>your under in passmate guideline and <a href="#">term&condition</a> and <a href="#">privacy policy</a>..</p>
-     <p>Thanks, <?php echo $user?></p>
+    <p>your under in passmate guideline and <a href="#">term&condition</a> and <a href="#">privacy policy</a>..</p>
+    <p>Thanks, <?php echo $user ?></p>
 
 </div>
 

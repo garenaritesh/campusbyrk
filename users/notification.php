@@ -48,6 +48,7 @@ $allnotifi = mysqli_num_rows(mysqli_query($db, "select * from notification where
 <div class="user_tabs">
     <ul class="tab">
         <li><a href="../pages/user_account.php">Passes</a></li>
+        <li><a href="orders.php">Orders</a></li>
         <li><a href="user_info.php">Account</a></li>
         <li class="c_tab"><a href="notification.php">Notification (<?php echo $allnotifi; ?>)</a></li>
         <li><a href="setting.php">Setting</a></li>

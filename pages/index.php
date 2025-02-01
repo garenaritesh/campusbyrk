@@ -30,7 +30,9 @@ $offer = mysqli_fetch_assoc($getres);
     <!-- Swiper JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
+    <link rel="stylesheet" href="../css/index_media.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_media.css">
     <!-- <link rel="stylesheet" href="../pages/form.css"> -->
     <!-- <link rel="stylesheet" href="../pages/style.css"> -->
     <link rel="stylesheet" href="index.css">
@@ -43,6 +45,9 @@ $offer = mysqli_fetch_assoc($getres);
     <nav>
         <div class="logo">
             <a href="../pages/index.php"><span>C</span>ampus<span>C</span>orner</a>
+        </div>
+        <div class="menu">
+            <a href="#"><i class='bx bx-menu-alt-right'></i></a>
         </div>
         <ul class="navlist">
             <li id="forms"><a href="#">Forms</a></li>
@@ -171,7 +176,7 @@ $offer = mysqli_fetch_assoc($getres);
 
 
     <!-- Offers Section -->
-    <section class="offers">
+    <section class="offers" id="offers">
         <div class="head_tit">
             <h3>Pick Student Combo Offers – Ultimate Academic Essentials Kits </h3>
             <p>Get started with combo offers with comfindence and save your pocket money.</p>
@@ -320,7 +325,7 @@ $offer = mysqli_fetch_assoc($getres);
 
 
 
-    <section class="shop">
+    <section class="shop" id="shop_sports">
         <div class="head_tit">
             <h3>Build To Be Different</h3>
             <p>Get Favorite Sports Gear</p>
